@@ -49,19 +49,19 @@ Licence URI: https://www.os-templates.com/template-terms
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="../index.html">Bronea</a></h1>
+        <h1><a href="../index.php">Bronea</a></h1>
       </div>
       <!-- ################################################################################################ -->
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.php">Home</a></li>
           <li class="active"><a class="drop" href="#">Pages</a>
             <ul>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li class="active"><a href="full-width.html">Full Width</a></li>
-              <li><a href="sidebar-left.html">Sidebar Left</a></li>
-              <li><a href="sidebar-right.html">Sidebar Right</a></li>
-              <li><a href="basic-grid.html">Basic Grid</a></li>
+              <li><a href="gallery.php">Gallery</a></li>
+              <li class="active"><a href="full-width.php">Full Width</a></li>
+              <li><a href="sidebar-left.php">Sidebar Left</a></li>
+              <li><a href="sidebar-right.php">Sidebar Right</a></li>
+              <li><a href="basic-grid.php">Basic Grid</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Dropdown</a>

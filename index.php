@@ -28,15 +28,15 @@ Licence URI: https://www.os-templates.com/template-terms
         <ul class="nospace">
           <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#copyright">Contact</a></li>
           <li><a href="#">Login</a></li>
           <li><a href="#">Register</a></li>
         </ul>
       </div>
       <div class="fl_right">
         <ul class="nospace">
-          <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-          <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+          <li><i class="fa fa-phone"></i> +57 3102704427</li>
+          <li><i class="fa fa-envelope-o"></i> elksil88@gmail.com</li>
         </ul>
       </div>
       <!-- ################################################################################################ -->
@@ -49,19 +49,19 @@ Licence URI: https://www.os-templates.com/template-terms
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="index.html">Bronea</a></h1>
+        <h1><a href="index.php">Bronea</a></h1>
       </div>
       <!-- ################################################################################################ -->
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a class="drop" href="#">Pages</a>
+          <li class="active"><a href="index.php">Home</a></li>
+          <li><a class="drop" href="#">Tool</a>
             <ul>
-              <li><a href="page/gallery.html">Gallery</a></li>
-              <li><a href="page/full-width.html">Full Width</a></li>
-              <li><a href="page/sidebar-left.html">Sidebar Left</a></li>
-              <li><a href="page/sidebar-right.html">Sidebar Right</a></li>
-              <li><a href="page/basic-grid.html">Basic Grid</a></li>
+              <li><a href="page/gallery.php">PINBlock</a></li>
+              <li><a href="page/full-width.php">XOR</a></li>
+              <li><a href="page/sidebar-left.php">LRC</a></li>
+              <li><a href="page/sidebar-right.php">Sidebar Right</a></li>
+              <li><a href="page/basic-grid.php">Basic Grid</a></li>
             </ul>
           </li>
           <li><a class="drop" href="#">Dropdown</a>
