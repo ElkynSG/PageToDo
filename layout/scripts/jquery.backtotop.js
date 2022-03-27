@@ -12,6 +12,12 @@ jQuery("#backtotop").click(function () {
         scrollTop: 0
     }, 600);
 });
+
+jQuery("#backtobotton").click(function () {
+    jQuery("body,html").animate({
+        scrollTop:3500
+    }, 700);
+});
 jQuery(window).scroll(function () {
     if (jQuery(window).scrollTop() > 150) {
         jQuery("#backtotop").addClass("visible");
