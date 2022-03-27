@@ -14,9 +14,8 @@ jQuery("#backtotop").click(function () {
 });
 
 jQuery("#backtobotton").click(function () {
-    jQuery("body,html").animate({
-        scrollTop:3500
-    }, 700);
+    jQuery("body,html").animate({ scrollTop: $(document).height() 
+    }, 1000);
 });
 jQuery(window).scroll(function () {
     if (jQuery(window).scrollTop() > 150) {
