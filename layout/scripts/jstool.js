@@ -22,17 +22,13 @@ function genera_tabla(idBody,headers, matrizData)
     if(tablaTemp != null)
     {
         tablaTemp.parentNode.removeChild(tablaTemp);
-        //tablaTemp.remove();
     }
 
     var tabla   = document.createElement("table");
     tabla.setAttribute("id","tableta");
 
-
-    // Crea un elemento <table> y un elemento <thead>
+    // ***************  crear header     ************************
     var tbthead = document.createElement("thead");
-
-    // Crea los header de la tabla
     var hilera = document.createElement("tr");
     for (var i = 0; i < headers.length; i++) 
     {
@@ -41,33 +37,63 @@ function genera_tabla(idBody,headers, matrizData)
         celda.appendChild(textoCelda);
         hilera.appendChild(celda);
     }
-    // agrega la hilera al final de la tabla (al final del elemento tbthead)
     tbthead.appendChild(hilera);
+    //***********************************************************
 
-    // Crea un elemento <table> y un elemento <tbody>
+    //*********   se crea la lineas  ****************************
     var tblBody = document.createElement("tbody");
-  
-    // Crea las celdas
-    for (var i = 0; i < matrizData.length; i++) {
-      // Crea las hileras de la tabla
+    for (var i = 0; i < matrizData.length; i++) 
+    {
       if(matrizData[i][0]==null)
         break;
-
+      var textoCelda;
       var hilera = document.createElement("tr");
-      for (var j = 0; j < matrizData[0].length; j++) {
-        // Crea un elemento <td> y un nodo de texto, haz que el nodo de
-        // texto sea el contenido de <td>, ubica el elemento <td> al final
-        // de la hilera de la tabla
+      for (var j = 0; j < matrizData[0].length; j++)
+      {
         var celda = document.createElement("td");
-        var textoCelda = document.createTextNode(matrizData[i][j]);
-        celda.appendChild(textoCelda);
+        var textFinal = "";
+        if(matrizData[i][j].length > 50)
+        {
+            console.log("length "+matrizData[i][j].length);
+
+            var divText = Math.floor(matrizData[i][j].length/50) ;
+            if(matrizData[i][j].length%50 != 0)
+            {
+                divText++;
+            }
+            console.log("divText "+divText);
+
+            for(var h=0; h<divText; h++)
+            {
+                textFinal = textFinal + matrizData[i][j].substring(h*50,h*50+50) + " ";
+                console.log("text "+h+" "+textFinal);
+            }
+
+            //textoCelda = document.createTextNode(textFinal);
+            //celda.appendChild(textoCelda);
+            var txtSplit =  textFinal.split(' ');
+            console.log("longitud "+txtSplit.length);
+            for(var f=0;f< txtSplit.length;f++)
+            {
+                var textoCelda = document.createTextNode(txtSplit[f]);
+                celda.appendChild(textoCelda);
+                var salto = document.createElement("br");
+                celda.appendChild(salto);
+            }
+            
+
+
+        }else{
+            textoCelda = document.createTextNode(matrizData[i][j]);
+            celda.appendChild(textoCelda);
+        }
+       
         hilera.appendChild(celda);
       }
-      // agrega la hilera al final de la tabla (al final del elemento tblbody)
+ 
       tblBody.appendChild(hilera);
     }
-  
-    // posiciona el <tbody> debajo del elemento <table>
+  //***********************************************************
     tabla.appendChild(tbthead);
     tabla.appendChild(tblBody);
     body.appendChild(tabla);
@@ -103,7 +129,7 @@ function decoderTEF(dataIn)
            break;
         }
 
-        stag = dataIn.substring(pos, pos+4);
+        stag = hex2a(dataIn.substring(pos, pos+4));
         console.log("tag "+stag); 
         mData[i][0]=stag;
 

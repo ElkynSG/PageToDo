@@ -178,11 +178,11 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #breadcrumb .heading{margin:0; font-size:2rem;}
 
 /* Sidebar Navigation */
-.sidebar nav{display:block; width:100%;}
+.sidebar nav{display:block; width:70%;}
 .sidebar nav li{margin:0 0 3px 0; padding:0;}
 .sidebar nav a{display:block; position:relative; margin:0; padding:5px 10px 5px 15px; text-decoration:none; border:solid; border-width:0 0 1px 0;}
 .sidebar nav a::after{top:9px; left:5px; content:"\f101";}
-.sidebar nav ul ul a{padding-left:35px;}
+.sidebar nav ul ul a{padding-left:10px;}
 .sidebar nav ul ul a::after{left:25px;}
 .sidebar nav ul ul ul a{padding-left:55px;}
 .sidebar nav ul ul ul a::after{left:45px;}
@@ -204,7 +204,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 --------------------------------------------------------------------------------------------------------------- */
 table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
 table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
+table{width:100px; margin-bottom:15px;}
 th, td{padding:5px 8px;}
 td{border-width:0 1px;}
 
@@ -315,7 +315,7 @@ table a, #comments a{background-color:inherit;}
 /* Max Wrapper Width - Laptop, Desktop etc.
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width:978px){
-	.hoc{max-width:1300px;}
+	.hoc{max-width:1450px;}
 }
 
 
@@ -378,7 +378,7 @@ table a, #comments a{background-color:inherit;}
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (max-width:650px){
 	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
-	.scrollable table{margin:0; padding:0; white-space:nowrap;}
+	.scrollable table{margin:0; padding:0; white-space:nowrap; width: 300px;overflow:auto; overflow-x:scroll;;}
 
 	.inline li{display:block; margin-bottom:10px;}
 	.pushright li{margin-right:0;}
