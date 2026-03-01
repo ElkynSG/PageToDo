@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
 Template Name: Bronea
 Author: <a href="https://www.os-templates.com/">OS Templates</a>
@@ -23,16 +23,19 @@ Licence URI: https://www.os-templates.com/template-terms
     />
   </head>
 
- 
   <body id="top">
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
     <!-- Top Background Image Wrapper -->
-    <div class="bgded overlay" style="background-image: url('../images/demo/backgrounds/01.png')">
+    <div
+      class="bgded overlay"
+      style="
+        background-image: url(&quot;../images/demo/backgrounds/01.png&quot;);
+      "
+    >
       <div class="wrapper row0">
         <div id="topbar" class="hoc clear">
-          
           <div class="fl_left">
             <ul class="nospace">
               <li>
@@ -106,15 +109,51 @@ Licence URI: https://www.os-templates.com/template-terms
       <main class="hoc container clear">
         <!-- main body -->
         <!-- ################################################################################################ -->
-        <div class="sidebar one_quarter first" widch=auto>
-          <div >
+        <div class="sidebar one_quarter first" widch="auto">
+          <div>
             <h6>HERRAMIENTA</h6>
             <nav>
               <ul>
-                <li><a href="#">Parcer TEF</a></li>
-                <li><a href="#">PINBlock</a></li>
-                <li><a href="#">LRC</a></li>
-                <li><a href="#">XOR</a></li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('tef');
+                      return false;
+                    "
+                    >Parcer TEF</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('pinblock');
+                      return false;
+                    "
+                    >PINBlock</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('lrc');
+                      return false;
+                    "
+                    >LRC</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('xor');
+                      return false;
+                    "
+                    >XOR</a
+                  >
+                </li>
               </ul>
             </nav>
           </div>
@@ -123,39 +162,192 @@ Licence URI: https://www.os-templates.com/template-terms
             <h6>URL</h6>
             <nav>
               <ul>
-                <li><a href="#">Parcer TEF</a></li>
-                <li><a href="#">PINBlock</a></li>
-                <li><a href="#">LRC</a></li>
-                <li><a href="#">XOR</a></li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('tef');
+                      return false;
+                    "
+                    >Parcer TEF</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('pinblock');
+                      return false;
+                    "
+                    >PINBlock</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('lrc');
+                      return false;
+                    "
+                    >LRC</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('xor');
+                      return false;
+                    "
+                    >XOR</a
+                  >
+                </li>
               </ul>
             </nav>
           </div>
         </div>
         <!-- ################################################################################################ -->
-        <div class="content three_quarter" widch=auto>
-          <div id="TefDecoder">
+        <div class="content three_quarter">
+          <!-- PARCER TEF -->
+          <div id="seccion-tef" class="seccion">
+            <h1>Parcer TEF</h1>
             <div id="comments">
               <label for="comment">Dato en formato TEF(Hexa)</label>
-              <textarea
-                name="comment"
-                id="textTEF"
-                cols="0%"
-                rows="10"
-              ></textarea>
+              <textarea name="comment" id="textTEF" rows="10"></textarea>
             </div>
+
             <br />
-            <li>
-              <a class="btn inverse" href="#TefDecoder" id="btDecodeTef"
-                >Decode tef</a>
-            </li>
-            <br />
+
+            <a class="btn inverse" href="#" id="btDecodeTef">Decode TEF</a>
+
+            <br /><br />
+
             <h1>Parcer TEF</h1>
             <div id="tablaTEF" class="scrollable"></div>
           </div>
+
+          <!-- PINBLOCK -->
+          <div id="seccion-pinblock" class="seccion" style="display: none">
+            <h1>PINBlock</h1>
+
+            <label for="la_pan">PAN:</label>
+            <input
+              type="text"
+              id="la_pan"
+              maxlength="19"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 19)
+              "
+            />
+            <span
+              id="errorPan"
+              style="color: red; display: none; margin-left: 10px"
+            >
+              PAN inválido
+            </span>
+
+            <br /><br />
+
+            <label for="la_pin">PIN:</label>
+            <input
+              type="text"
+              id="la_pin"
+              maxlength="12"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 19)
+              "
+            />
+
+            <br /><br />
+
+            <a
+              class="btn inverse"
+              href="#"
+              onclick="
+                calcularPinblock();
+                return false;
+              "
+            >
+              Calcular
+            </a>
+
+            <br /><br />
+
+            <label>PIN Block:</label>
+            <div
+              id="resultadoPinblock"
+              style="font-weight: bold; margin-top: 20px"
+            ></div>
+          </div>
+
+          <!-- LRC -->
+          <div id="seccion-lrc" class="seccion" style="display: none">
+            <h1>LRC</h1>
+
+            <label for="tramaLRC">Ingrese la trama hexa:</label>
+            <br />
+
+            <textarea
+              id="tramaLRC"
+              rows="6"
+              style="width: 100%; font-size: 16px"
+            ></textarea>
+
+            <br /><br />
+
+            <a
+              class="btn inverse"
+              href="#"
+              onclick="
+                calcularLRC();
+                return false;
+              "
+            >
+              Calcular LRC
+            </a>
+
+            <br /><br />
+
+            <label>Resultado LRC:</label>
+            <div id="resultadoLRC"></div>
+          </div>
+
+          <!-- XOR -->
+          <div id="seccion-xor" class="seccion" style="display: none">
+            <h1>XOR</h1>
+
+            <label for="xor1">Valor 1 (HEX):</label>
+            <input type="text" id="xor1" />
+
+            <br /><br />
+
+            <label for="xor2">Valor 2 (HEX):</label>
+            <input type="text" id="xor2" />
+
+            <br /><br />
+
+            <a
+              class="btn inverse"
+              href="#"
+              onclick="
+                calcularXOR();
+                return false;
+              "
+            >
+              Calcular XOR
+            </a>
+
+            <br /><br />
+
+            <label>Resultado:</label>
+            <div id="resultadoXOR"></div>
+          </div>
         </div>
         <!-- ################################################################################################ -->
-        
-        
       </main>
     </div>
     <!-- ################################################################################################ -->

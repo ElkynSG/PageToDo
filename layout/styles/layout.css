@@ -391,6 +391,12 @@ table a, #comments a{background-color:inherit;}
 	.font-x3{font-size:1.6rem;}
 }
 
+
+
+.seccion {
+    padding: 10px;
+}
+
 #tableta {
     width: 100%;
     table-layout: fixed;
@@ -398,22 +404,22 @@ table a, #comments a{background-color:inherit;}
 
 #tableta th:nth-child(1),
 #tableta td:nth-child(1) {
-    width: 6%;
+    width: 5%;
 }
 
 #tableta th:nth-child(2),
 #tableta td:nth-child(2) {
-    width: 10%;
+    width: 5%;
 }
 
 #tableta th:nth-child(3),
 #tableta td:nth-child(3) {
-    width: 44%;
+    width: 45%;
 }
 
 #tableta th:nth-child(4),
 #tableta td:nth-child(4) {
-    width: 44%;
+    width: 45%;
 }
 
 #tableta td:nth-child(3) {
@@ -427,3 +433,56 @@ table a, #comments a{background-color:inherit;}
     word-break: break-word;
 }
 
+.container {
+    display: flex;
+    gap: 15px;
+}
+
+.sidebar {
+    flex: 0 0 220px;
+}
+
+.content {
+    flex: 1;
+}
+
+#resultadoPinblock {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    width: fit-content;
+}
+
+#resultadoLRC {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    width: fit-content;
+}
+
+
+
+#seccion-xor input {
+    width: 500px;     /* puedes ajustar a 450px o 500px */
+    padding: 6px;
+    font-size: 16px;
+}
+
+#resultadoXOR {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    width: fit-content;
+}
