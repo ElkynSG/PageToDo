@@ -52,41 +52,14 @@ function genera_tabla(idBody,headers, matrizData)
       {
         var celda = document.createElement("td");
         var textFinal = "";
-        if(matrizData[i][j].length > 50)
-        {
-            console.log("length "+matrizData[i][j].length);
-
-            var divText = Math.floor(matrizData[i][j].length/50) ;
-            if(matrizData[i][j].length%50 != 0)
-            {
-                divText++;
-            }
-            console.log("divText "+divText);
-
-            for(var h=0; h<divText; h++)
-            {
-                textFinal = textFinal + matrizData[i][j].substring(h*50,h*50+50) + " ";
-                console.log("text "+h+" "+textFinal);
-            }
-
-            //textoCelda = document.createTextNode(textFinal);
-            //celda.appendChild(textoCelda);
-            var txtSplit =  textFinal.split(' ');
-            console.log("longitud "+txtSplit.length);
-            for(var f=0;f< txtSplit.length;f++)
-            {
-                var textoCelda = document.createTextNode(txtSplit[f]);
-                celda.appendChild(textoCelda);
-                var salto = document.createElement("br");
-                celda.appendChild(salto);
-            }
-            
-
-
-        }else{
-            textoCelda = document.createTextNode(matrizData[i][j]);
-            celda.appendChild(textoCelda);
+       if (j == 2) {  // DATA HEXA
+            celda.style.wordBreak = "break-all";
         }
+        if (j == 3) {  // DATA ASCII
+            celda.style.whiteSpace = "normal";
+            celda.style.wordBreak = "break-word";
+        }
+        celda.textContent = matrizData[i][j];
        
         hilera.appendChild(celda);
       }
@@ -135,7 +108,7 @@ function decoderTEF(dataIn)
 
         len = parseInt(dataIn.substring(pos+4, pos+8),16)*2;
         console.log("len "+len);
-        mData[i][1]=len;
+        mData[i][1]=len/2;
 
         pos = pos+8;
         sHexa = dataIn.substring(pos, pos+len);
