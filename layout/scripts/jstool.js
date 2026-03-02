@@ -175,6 +175,17 @@ function validarPAN(pan) {
   return suma % 10 === 0;
 }
 
+function mostrarSubPin(tipo)
+{
+    document.getElementById("sub-pin-codificar").style.display = "none";
+    document.getElementById("sub-pin-decodificar").style.display = "none";
+
+    if(tipo === "codificar")
+        document.getElementById("sub-pin-codificar").style.display = "block";
+    else
+        document.getElementById("sub-pin-decodificar").style.display = "block";
+}
+
 function generarPinBlockISO0(pan, pin) {
   // --- 1. Construir PIN FIELD ---
   // Formato: 0 + longitud PIN (hex) + PIN + F padding
@@ -225,6 +236,50 @@ function calcularPinblock() {
   var result = generarPinBlockISO0(pan, pin);
 
   document.getElementById("resultadoPinblock").innerText = result;
+}
+
+function decodificarPinblock()
+{
+    var pinblock = document.getElementById("pinblockHex").value.trim().toUpperCase();
+    var pan = document.getElementById("panDecode").value.trim();
+
+    if(pinblock.length !== 16)
+    {
+        alert("El PINBlock debe tener 16 caracteres HEX");
+        return;
+    }
+
+    if(pan.length < 13)
+    {
+        alert("PAN inválido");
+        return;
+    }
+
+    // Tomar 12 dígitos del PAN (sin el último dígito)
+    var pan12 = pan.substring(pan.length - 13, pan.length - 1);
+    var panBlock = "0000" + pan12;
+
+    // XOR entre pinblock y panBlock
+    var resultadoXor = "";
+
+    for(var i = 0; i < 16; i += 2)
+    {
+        var byte1 = parseInt(pinblock.substr(i,2),16);
+        var byte2 = parseInt(panBlock.substr(i,2),16);
+
+        var xorByte = byte1 ^ byte2;
+        var hex = xorByte.toString(16).toUpperCase();
+        if(hex.length === 1) hex = "0" + hex;
+
+        resultadoXor += hex;
+    }
+
+    // Primer nibble indica longitud PIN
+    var pinLength = parseInt(resultadoXor.substr(1,1),16);
+    var pin = resultadoXor.substr(2, pinLength);
+
+    document.getElementById("resultadoPinblockDecode").innerText =
+        "PIN decodificado: " + pin;
 }
 
 function hexStringToBytes(hexString) {
@@ -321,5 +376,67 @@ function calcularXOR()
     }
 
     document.getElementById("resultadoXOR").innerText = resultado;
+}
+
+function decodificarTLV()
+{
+    var trama = document.getElementById("tramaTLV").value
+                 .replace(/\s/g, "")
+                 .toUpperCase();
+
+    if(trama === "")
+    {
+        alert("Debe ingresar una trama TLV");
+        return;
+    }
+
+    var resultado = "";
+    var i = 0;
+
+    while(i < trama.length)
+    {
+        // -------- TAG DINÁMICO --------
+        var tag = "";
+        var byte = trama.substr(i, 2);
+        tag += byte;
+        i += 2;
+
+        // Si es tag extendido
+        if((parseInt(byte,16) & 0x1F) === 0x1F)
+        {
+            do
+            {
+                byte = trama.substr(i, 2);
+                tag += byte;
+                i += 2;
+            }
+            while((parseInt(byte,16) & 0x80) === 0x80);
+        }
+
+        // -------- LONGITUD --------
+        var longitudHex = trama.substr(i, 2);
+        i += 2;
+
+        var longitud = parseInt(longitudHex, 16);
+
+        // Soporte para longitud extendida (81, 82...)
+        if(longitud > 0x80)
+        {
+            var numBytes = longitud & 0x7F;
+            longitudHex = trama.substr(i, numBytes * 2);
+            longitud = parseInt(longitudHex, 16);
+            i += numBytes * 2;
+        }
+
+        // -------- VALOR --------
+        var valor = trama.substr(i, longitud * 2);
+        i += longitud * 2;
+
+        resultado += tag + " " + 
+                     longitud.toString(16).toUpperCase().padStart(2,'0') + 
+                     " " + valor + "\n";
+    }
+
+    document.getElementById("resultadoTLV").innerText = resultado;
 }
 // 1234000a303031323435363738391Casdf0000

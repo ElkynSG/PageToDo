@@ -131,7 +131,7 @@ Licence URI: https://www.os-templates.com/template-terms
                       mostrarSeccion('pinblock');
                       return false;
                     "
-                    >PINBlock</a
+                    >PIN Block</a
                   >
                 </li>
                 <li>
@@ -152,6 +152,16 @@ Licence URI: https://www.os-templates.com/template-terms
                       return false;
                     "
                     >XOR</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('tlv');
+                      return false;
+                    "
+                    >Decoder TLV</a
                   >
                 </li>
               </ul>
@@ -202,6 +212,16 @@ Licence URI: https://www.os-templates.com/template-terms
                     >XOR</a
                   >
                 </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="
+                      mostrarSeccion('tlv');
+                      return false;
+                    "
+                    >TLV</a
+                  >
+                </li>
               </ul>
             </nav>
           </div>
@@ -227,69 +247,69 @@ Licence URI: https://www.os-templates.com/template-terms
           </div>
 
           <!-- PINBLOCK -->
-          <div id="seccion-pinblock" class="seccion" style="display: none">
-            <h1>PINBlock</h1>
+          <div id="seccion-pinblock" class="seccion" style="display:none;">
+  <h1>PIN Block</h1>
 
-            <label for="la_pan">PAN:</label>
-            <input
-              type="text"
-              id="la_pan"
-              maxlength="19"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              oninput="
-                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 19)
-              "
-            />
-            <span
-              id="errorPan"
-              style="color: red; display: none; margin-left: 10px"
-            >
-              PAN inválido
-            </span>
+  <!-- Sub menú -->
+  <div style="margin-bottom:15px;">
+    <a href="#" onclick="mostrarSubPin('codificar'); return false;">Codificar</a> |
+    <a href="#" onclick="mostrarSubPin('decodificar'); return false;">Decodificar</a>
+  </div>
 
-            <br /><br />
+  <!-- ================= CODIFICAR ================= -->
+  <div id="sub-pin-codificar">
 
-            <label for="la_pin">PIN:</label>
-            <input
-              type="text"
-              id="la_pin"
-              maxlength="12"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              oninput="
-                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 19)
-              "
-            />
+    <label>PIN:</label>
+    <input type="text" id="la_pin" maxlength="12" />
 
-            <br /><br />
+    <br /><br />
 
-            <a
-              class="btn inverse"
-              href="#"
-              onclick="
-                calcularPinblock();
-                return false;
-              "
-            >
-              Calcular
-            </a>
+    <label>PAN (hasta 19 dígitos):</label>
+    <input type="text" id="la_pan" maxlength="19" />
+    <span id="errorPan" style="color:red; display:none; margin-left:10px;">
+    PAN inválido
+</span>
 
-            <br /><br />
+    <br /><br />
 
-            <label>PIN Block:</label>
-            <div
-              id="resultadoPinblock"
-              style="font-weight: bold; margin-top: 20px"
-            ></div>
-          </div>
+    <a class="btn inverse" href="#" onclick="calcularPinblock(); return false;">
+      Codificar PINBlock
+    </a>
+
+    <br /><br />
+
+    <div id="resultadoPinblock"></div>
+  </div>
+
+  <!-- ================= DECODIFICAR ================= -->
+  <div id="sub-pin-decodificar" style="display:none;">
+
+    <label>PINBlock (HEX):</label>
+    <input type="text" id="pinblockHex" />
+
+    <br /><br />
+
+    <label>PAN:</label>
+    <input type="text" id="panDecode" maxlength="19" />
+
+    <br /><br />
+
+    <a class="btn inverse" href="#" onclick="decodificarPinblock(); return false;">
+      Decodificar PINBlock
+    </a>
+
+    <br /><br />
+
+    <div id="resultadoPinblockDecode"></div>
+  </div>
+
+</div>
 
           <!-- LRC -->
           <div id="seccion-lrc" class="seccion" style="display: none">
             <h1>LRC</h1>
 
             <label for="tramaLRC">Ingrese la trama hexa:</label>
-            <br />
 
             <textarea
               id="tramaLRC"
@@ -346,6 +366,36 @@ Licence URI: https://www.os-templates.com/template-terms
             <label>Resultado:</label>
             <div id="resultadoXOR"></div>
           </div>
+
+          <!-- TLV -->
+          <div id="seccion-tlv" class="seccion" style="display: none">
+            <h1>Decodificador TLV</h1>
+
+            <label for="tramaTLV">Ingrese la trama TLV (HEX):</label>
+
+            <textarea id="tramaTLV" rows="6"
+          style="width:100%; font-size:16px; font-family:monospace;"></textarea>
+            </textarea>
+
+            <br /><br />
+
+            <a
+              class="btn inverse"
+              href="#"
+              onclick="
+                decodificarTLV();
+                return false;
+              "
+            >
+              Decodificar TLV
+            </a>
+
+            <br /><br />
+
+            <label>Resultado:</label>
+            <div id="resultadoTLV"></div>
+          </div>
+
         </div>
         <!-- ################################################################################################ -->
       </main>

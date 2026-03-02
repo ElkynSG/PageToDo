@@ -439,7 +439,7 @@ table a, #comments a{background-color:inherit;}
 }
 
 .sidebar {
-    flex: 0 0 220px;
+    flex: 0 0 120px;
 }
 
 .content {
@@ -466,6 +466,17 @@ table a, #comments a{background-color:inherit;}
     border-radius: 6px;
     background-color: #f5f5f5;
     width: fit-content;
+}
+
+#resultadoTLV {
+    font-family: monospace;
+    white-space: pre-line;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    margin-top: 10px;
 }
 
 
